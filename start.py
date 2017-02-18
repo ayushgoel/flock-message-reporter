@@ -1,5 +1,7 @@
 from flask import Flask
 from flask import request
+from flask import abort
+from flask import jsonify
 import events
 
 app = Flask(__name__)
@@ -12,11 +14,18 @@ def eventsRoute():
             events.handle_app_install(request)
         if name == "app.uninstall":
             events.handle_app_uninstall(request)
+        if name == "client.messageAction":
+            events.handle_message_action(request)
     return ""
 
-@app.route("/status")
-def statusRoute():
-    return "Up"
+@app.route("/UID/<UID>")
+def UIDRoute(UID):
+    details = events.messageDetailsForUID(UID)
+    if details:
+        print details
+        print "Returning details ", details.__class__
+        return jsonify(details)
+    abort(404)
 
 @app.route("/configure")
 def configureRoute():
