@@ -6,7 +6,7 @@ import events
 
 app = Flask(__name__)
 
-@app.route("/events", methods=['GET', 'POST'])
+@app.route("/events", methods=['POST'])
 def eventsRoute():
     if request.method == 'POST':
         name = request.json["name"]
