@@ -37,6 +37,5 @@ def messageDetailsForUID(UID):
         details = redis_client.get(UID)
         print "Got UID", UID, details
         return json.loads(details)
-    else:
-        return None
+    return None
 
