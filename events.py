@@ -39,3 +39,10 @@ def messageDetailsForUID(UID):
         return json.loads(details)
     return None
 
+def UIDsForMonth(month):
+    if redis_client.exists(month):
+        details = redis_client.lrange(month, 0, -1)
+        print "Got UID", month, details
+        return details
+    return None
+

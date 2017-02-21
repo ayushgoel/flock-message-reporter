@@ -18,13 +18,27 @@ def eventsRoute():
             events.handle_message_action(request)
     return ""
 
-@app.route("/UID/<UID>")
-def UIDRoute(UID):
-    details = events.messageDetailsForUID(UID)
-    if details:
-        print details
-        print "Returning details ", details.__class__
-        return jsonify(details)
+@app.route("/UID", methods=['POST'])
+def UIDRoute():
+    if request.method == 'POST':
+        UID = request.json['UID']
+        details = events.messageDetailsForUID(UID)
+        if details:
+            print details
+            print "Returning details ", details.__class__
+            return jsonify(details)
+    abort(404)
+
+@app.route("/history", methods=['POST'])
+def historyRoute():
+    if request.method == 'POST':
+        print request.json
+        month = request.json['month']
+        UIDs = events.UIDsForMonth(month)
+        if UIDs:
+            print UIDs
+            print "Returning UIDs ", UIDs.__class__
+            return jsonify(UIDs)
     abort(404)
 
 @app.route("/configure")
