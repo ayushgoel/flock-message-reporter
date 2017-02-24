@@ -43,7 +43,7 @@ def historyRoute():
 
 @app.route("/configure")
 def configureRoute():
-    return "Configuration called!"
+    return "Configuration called! We don't handle this yet."
 
 @app.route("/")
 def baseRoute():
