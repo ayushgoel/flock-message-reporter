@@ -2,6 +2,7 @@ from flask import Flask
 from flask import request
 from flask import abort
 from flask import jsonify
+from flask import send_from_directory
 import events
 
 app = Flask(__name__)
@@ -47,7 +48,7 @@ def configureRoute():
 
 @app.route("/")
 def baseRoute():
-    return "Hello!"
+    return send_from_directory('static', 'index.html')
 
 if __name__ == "__main__":
     print "Starting app"
