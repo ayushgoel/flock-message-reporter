@@ -55,6 +55,8 @@ $('#form-submit-button').click(function (event, c) {
     contentType: 'application/json; charset=utf-8',
     dataType: 'json',
     success: function(UIDs) {
+      // Empty old results from table
+      $('#table-body').empty();
 
       UIDs.forEach(function(UID, index, array) {
 
