@@ -18,7 +18,7 @@ def handle_app_uninstall(request):
     redis_client.delete(userID)
 
 def date_key():
-    return "{0}-{1}".format(datetime.date.today().year, datetime.date.today().month)
+    return "{}-{:02d}".format(datetime.date.today().year, datetime.date.today().month)
 
 def handle_message_action(request):
     print "Handling message action", request.json
