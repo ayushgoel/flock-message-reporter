@@ -32,7 +32,9 @@ function createAndAppendRow(data) {
 $('#form-submit-button').click(function (event, c) {
   var month = $('#form-month-input').val();
   console.log("Form being submitted", event, c, month);
+  // FIXME: This if check doesn't work.
   if (month === undefined) {
+    // FIXME: Show failure alert
     // $('.container')[0].innerHTML =  failureAlert() + $('.container')[0].innerHTML;
     // setTimeout(function(){
     //   if ($('#failure-alert').length > 0) {
@@ -57,6 +59,7 @@ $('#form-submit-button').click(function (event, c) {
       UIDs.forEach(function(UID, index, array) {
 
         var data = {'UID': UID};
+        // FIXME: Refactor
         $.ajax({
           url: '/UID',
           type: 'POST',
