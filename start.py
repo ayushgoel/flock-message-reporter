@@ -50,6 +50,10 @@ def configureRoute():
 def baseRoute():
     return send_from_directory('static', 'index.html')
 
+@app.route('/js/<path:path>')
+def sendJS(path):
+    return send_from_directory('static', path)
+
 if __name__ == "__main__":
     print "Starting app"
     app.run()
