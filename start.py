@@ -33,6 +33,7 @@ def UIDRoute():
 @app.route("/history", methods=['POST'])
 def historyRoute():
     if request.method == 'POST':
+        print request.headers
         print request.json
         month = request.json['month']
         UIDs = events.UIDsForMonth(month)
