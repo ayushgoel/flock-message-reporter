@@ -34,8 +34,7 @@ function createAndAppendRow(data) {
 $('#form-submit-button').click(function (event, c) {
   var month = $('#form-month-input').val();
   console.log("Form being submitted", event, c, month);
-  // FIXME: This if check doesn't work.
-  if (month === undefined) {
+  if (typeof month === 'undefined' || month === '') {
     $('#failure-alert').show();
     setTimeout(function() {
       $('#failure-alert').hide();
