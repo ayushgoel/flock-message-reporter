@@ -1,5 +1,6 @@
 function setCurrentMonthInInput() {
   console.log("Tried to set month in input. Disabled right now");
+  //FIXME: Set current month
 }
 
 function failureAlert() {
