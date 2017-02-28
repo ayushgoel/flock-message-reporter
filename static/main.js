@@ -1,6 +1,7 @@
 function setCurrentMonthInInput() {
   console.log("Tried to set month in input. Disabled right now");
   //FIXME: Set current month
+  $('#failure-alert').hide();
 }
 
 function failureAlert() {
@@ -35,13 +36,11 @@ $('#form-submit-button').click(function (event, c) {
   console.log("Form being submitted", event, c, month);
   // FIXME: This if check doesn't work.
   if (month === undefined) {
-    // FIXME: Show failure alert
-    // $('.container')[0].innerHTML =  failureAlert() + $('.container')[0].innerHTML;
-    // setTimeout(function(){
-    //   if ($('#failure-alert').length > 0) {
-    //     $('#failure-alert').remove();
-    //   }
-    // }, 2000)
+    $('#failure-alert').show();
+    setTimeout(function() {
+      $('#failure-alert').hide();
+    }, 2000);
+
     console.log("No month on page.");
     return false;
   }
