@@ -20,6 +20,10 @@ def handle_app_uninstall(request):
 def date_key():
     return "{}-{:02d}".format(datetime.date.today().year, datetime.date.today().month)
 
+def add_report_time(response):
+    response["reportTime"] = datetime.datetime.today().isoformat()
+    return response
+
 def handle_message_action(request):
     print "Handling message action", request.json
     messagesUIDs = request.json["messageUids"]
@@ -28,7 +32,7 @@ def handle_message_action(request):
             print "Saving UID", messageUID
             key = date_key()
             redis_client.rpush(key, messageUID)
-            redis_client.set(messageUID, json.dumps(request.json))
+            redis_client.set(messageUID, json.dumps(add_report_time(request.json)))
         else:
             print "Ignoring UID", messageUID
 
