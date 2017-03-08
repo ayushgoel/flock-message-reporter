@@ -26,6 +26,7 @@ function createAndAppendRow(data) {
   row.appendChild(tableHead(data.userId));
   row.appendChild(tableHead(data.chatName));
   row.appendChild(tableHead(data.chat));
+  row.appendChild(tableHead(data.reportTime));
 
   var tableBody = $('#table-body');
   tableBody.append(row);
