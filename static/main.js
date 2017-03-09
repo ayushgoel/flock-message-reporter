@@ -57,6 +57,7 @@ $('#form-submit-button').click(function (event, c) {
     success: function(UIDs) {
       // Empty old results from table
       $('#table-body').empty();
+      table_index = 1;
 
       UIDs.forEach(function(UID, index, array) {
 
