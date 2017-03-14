@@ -55,6 +55,10 @@ def configureRoute():
 def baseRoute():
     return send_from_directory('static', 'index.html')
 
+@app.route("/report-message")
+def baseRoute():
+    return send_from_directory('static', 'index.html')
+
 @app.route('/js/<path:path>')
 def sendJS(path):
     return send_from_directory('static', path)
