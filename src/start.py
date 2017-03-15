@@ -1,4 +1,5 @@
 from flask import Flask
+from flask import Blueprint
 from flask import request
 from flask import abort
 from flask import jsonify
@@ -6,12 +7,13 @@ from flask import send_from_directory
 import events
 
 app = Flask(__name__)
+bp = Blueprint('report-message', __name__)
 
-@app.route("/status")
+@bp.route("/status")
 def status():
     return "Up!"
 
-@app.route("/events", methods=['POST'])
+@bp.route("/events", methods=['POST'])
 def eventsRoute():
     if request.method == 'POST':
         name = request.json["name"]
@@ -23,7 +25,7 @@ def eventsRoute():
             events.handle_message_action(request)
     return ""
 
-@app.route("/UID", methods=['POST'])
+@bp.route("/UID", methods=['POST'])
 def UIDRoute():
     if request.method == 'POST':
         UID = request.json['UID']
@@ -34,7 +36,7 @@ def UIDRoute():
             return jsonify(details)
     abort(404)
 
-@app.route("/history", methods=['POST'])
+@bp.route("/history", methods=['POST'])
 def historyRoute():
     if request.method == 'POST':
         print request.headers
@@ -47,22 +49,19 @@ def historyRoute():
             return jsonify(UIDs)
     abort(404)
 
-@app.route("/configure")
+@bp.route("/configure")
 def configureRoute():
     return "Configuration called! We don't handle this yet."
 
-@app.route("/")
+@bp.route("/")
 def baseRoute():
     return send_from_directory('static', 'index.html')
 
-@app.route("/report-message")
-def reportMessageHomeRoute():
-    return send_from_directory('static', 'index.html')
-
-@app.route('/js/<path:path>')
+@bp.route('/js/<path:path>')
 def sendJS(path):
     return send_from_directory('static', path)
 
 if __name__ == "__main__":
     print "Starting app"
+    app.register_blueprint(bp, url_prefix='/report-message')
     app.run(host='0.0.0.0', port=5000)
