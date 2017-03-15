@@ -10,7 +10,7 @@ import config
 app = Flask(__name__)
 bp = Blueprint('report-message', __name__)
 
-@bp.route("/status")
+@app.route("/status")
 def status():
     return "Up!"
 
