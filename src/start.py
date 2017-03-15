@@ -5,6 +5,7 @@ from flask import abort
 from flask import jsonify
 from flask import send_from_directory
 import events
+import config
 
 app = Flask(__name__)
 bp = Blueprint('report-message', __name__)
@@ -64,4 +65,4 @@ def sendJS(path):
 if __name__ == "__main__":
     print "Starting app"
     app.register_blueprint(bp, url_prefix='/report-message')
-    app.run(host='0.0.0.0', port=5000)
+    app.run(host=config.app_config["host"], port=config.app_config["port"])
