@@ -24,6 +24,7 @@ def eventsRoute():
             events.handle_app_uninstall(request)
         if name == "client.messageAction":
             events.handle_message_action(request)
+            return "Message reported 👍"
     return ""
 
 @bp.route("/UID", methods=['POST'])
