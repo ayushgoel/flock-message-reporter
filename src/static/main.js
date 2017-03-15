@@ -49,7 +49,7 @@ $('#form-submit-button').click(function (event, c) {
 
   var data = {'month': month};
   $.ajax({
-    url: '/history',
+    url: '/report-message/history',
     type: 'POST',
     data: JSON.stringify(data),
     contentType: 'application/json; charset=utf-8',
@@ -64,7 +64,7 @@ $('#form-submit-button').click(function (event, c) {
         var data = {'UID': UID};
         // FIXME: Refactor
         $.ajax({
-          url: '/UID',
+          url: '/report-message/UID',
           type: 'POST',
           data: JSON.stringify(data),
           contentType: 'application/json; charset=utf-8',
